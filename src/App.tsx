@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useCounterStore } from "./store";
+import { Skeleton } from "boneyard-js/react";
 
 const setCount = () => {
   useCounterStore.setState({ count: 1 });
@@ -10,8 +11,14 @@ function App() {
 
   return (
     <>
+    {/* TODO: run npx boneyard build */}
       <h1>GitFrame</h1>
       <OtherComponent count={count} />
+      <Skeleton name="blog-card" loading={count === 0}>
+        <div style={{ width: "200px", height: "100px", background: "gray" }}>
+          Blog Card
+        </div>
+      </Skeleton>
     </>
   );
 }
@@ -20,7 +27,9 @@ const OtherComponent = ({ count }: { count: number }) => {
   const decrement = useCounterStore((state) => state.decrement);
 
   useEffect(() => {
-    setCount();
+    setTimeout(() => {
+      setCount();
+    }, 2000);
   }, []);
 
   return (
