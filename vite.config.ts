@@ -6,4 +6,7 @@ import { boneyardPlugin } from 'boneyard-js/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss(), boneyardPlugin()],
+  resolve: {
+    tsconfigPaths: true,
+  }
 })
